@@ -1,5 +1,8 @@
 Author: Ryan Crosier
 
+------------------------------------------------------------------
+DESCRIPTION
+------------------------------------------------------------------
 WORKIFY
 This program extracts and imports eclipse projects from a specified
 zip directory into an eclipse workspace. It expectes the format
