@@ -13,12 +13,12 @@ except ImportError:
 # constants
 SUBMISSIONS = 'submissions'
 DEPENDENCIES = {'submissions.zip', 'OsuCseWsTemplate.zip'}
-OPTIONS = ['-t', '-h']
+OPTIONS = ['-t', '-h', '-c']
 
 def main():
 
     # selected options
-    selected = {'-t': False, '-h': False}
+    selected = {'-t': False, '-h': False, '-c': False}
 
     # assert all required files exist
     if not has_dependencies():
@@ -89,8 +89,10 @@ def main():
         os.system('mv ' + folder_path + '//' + prj_name + '//.classpath ' + folder_path)
         os.system('mv ' + folder_path + '//' + prj_name + '//.project ' + folder_path)
 
-        if selected['-t']:
+        if selected['-c']:
             os.system('rm ' + folder_path + '//test//*')
+
+        if selected['-t']:
             os.system('cp ' + test_path + ' ' + folder_path + '//test')
 
         print('done')
@@ -101,11 +103,11 @@ def main():
     print('All projects imported')
 
     # instructions for completing setup
-    print('IMPORTANT: open eclipse, use the projectname/workspace as the new workspace. Then')
+    print('\nIMPORTANT: open eclipse, use the projectname/workspace as the new workspace. Then')
     print('select File->Import->Projects->ExistingProjects and select the same workspace folder')
     print('Press finish, and the workspace is ready. Unfortunately, projects MUST be imported')
     print('this way for eclipse to show them in the file explorer. Finally, remember to set the')
-    print('path of components.jar and enable assertions')
+    print('path of components.jar and enable assertions\n')
 
     # remove unzipped submissions
     clean_up()
@@ -148,7 +150,8 @@ def print_help():
     print('\t\tPrints this message.')
     print('\n\t-t:')
     print('\t\tPrompts for the path of a test file to be added to each student project')
-    print('\t\tThis will also remove any student created test files')
+    print('\t\t-c:')
+    print('\t\t\'Clean\' option, removes all student test cases\n');
 
 if __name__ == '__main__':
     main()
